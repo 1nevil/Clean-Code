@@ -1,16 +1,16 @@
 # Clean code
 
-## 1. what is Clean code
+## 1. What is Clean code
 
 ![Productivity and time relation in bad code](https://ptgmedia.pearsoncmg.com/images/chap1_9780132350884/elementLinks/1-4fig_martin.jpg)
 
-##### When your code becomes messy and disorganized, your ability to work efficiently goes down over time.
+#### When your code becomes messy and disorganized, your ability to work efficiently goes down over time.
 
-##### Clean code are that clean , efficent ,readable ,testable
+#### Clean code are that clean , efficent ,readable ,testable
 
-##### Clean code is that which each section can be easily understood at a glance
+#### Clean code is that which each section can be easily understood at a glance
 
-##### Clean code 5 parameters
+#### Clean code 5 parameters
 
 1. Clear
 2. Simple
@@ -22,11 +22,11 @@
 
 ## 2 - Meaningful name
 
-#### Variable name
+### Variable name
 
 Intention-revealing names - The intention-revealing names should **cleanly convey the intent** of the code author.
 
-❌ Avoid
+❌ **Avoid**
 
 ```
     public int calc(int x ,int y){
@@ -36,7 +36,7 @@ Intention-revealing names - The intention-revealing names should **cleanly conve
     }
 ```
 
-✅Instead of
+✅ **Instead of**
 
 ```
     public int calculate_product(int x ,int y){
@@ -46,15 +46,15 @@ Intention-revealing names - The intention-revealing names should **cleanly conve
     }
 ```
 
-##### Avoid missinformation
+#### Avoid missinformation
 
-❌ Avoid
+❌ **Avoid**
 
 ```
     List<Integer> userList = new ArrayList<>();
 ```
 
-✅Instead of
+✅**Instead of**
 
 ```
     List<Integer> users = new ArrayList<>();
@@ -64,9 +64,9 @@ Intention-revealing names - The intention-revealing names should **cleanly conve
 
 ```
 
-##### Name should be pronounceable
+#### Name should be pronounceable
 
-❌ Avoid
+❌ **Avoid**
 
 ```
    class AcntStmtRcd{
@@ -75,7 +75,7 @@ Intention-revealing names - The intention-revealing names should **cleanly conve
    }
 ```
 
-✅Instead of
+✅**Instead of**
 
 ```
     class AccountStatementRecord{
@@ -84,11 +84,11 @@ Intention-revealing names - The intention-revealing names should **cleanly conve
     }
 ```
 
-#### class name
+### Class name
 
 Use noun in nameing in class
 
-❌ Avoid
+❌ **Avoid**
 
 ```
     class ManageEmployees {
@@ -104,7 +104,7 @@ Use noun in nameing in class
     }
 ```
 
-✅Instead of
+✅**Instead of**
 
 ```
     class EmployeeManager {
@@ -121,9 +121,9 @@ Use noun in nameing in class
 
 ```
 
-#### Method name
+### Method name
 
-❌ Avoid
+❌ **Avoid**
 
 ```
     // Incorrect: Unclear and abbreviated
@@ -140,7 +140,7 @@ Use noun in nameing in class
 
 ```
 
-✅Instead of
+✅ **Instead**
 
 ```
     // Correct: Descriptive and uses verbs to indicate action
@@ -156,7 +156,7 @@ Use noun in nameing in class
 
 ```
 
-#### Use one term at a time
+### Use one term at a time
 
 ```
     fetchUser()
