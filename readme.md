@@ -1,6 +1,10 @@
 # Clean code
 
-## 1. What is Clean code
+- [1. What is Clean code](#chapter-1)
+- [2. Meaningful name](#chapter-2)
+- [3. Writing better function](#chapter-3)
+
+## <a id="chapter-1"></a> 1. What is Clean code
 
 ![Productivity and time relation in bad code](https://ptgmedia.pearsoncmg.com/images/chap1_9780132350884/elementLinks/1-4fig_martin.jpg)
 
@@ -20,7 +24,7 @@
 
 #### Developers should make small improvements and cleanups to the code whenever they work on it, ensuring that the codebase remains clean and maintainable over time.
 
-## 2 - Meaningful name
+## <a id="chapter-2"></a> 2 - Meaningful name
 
 ### Variable name
 
@@ -167,3 +171,247 @@ Use noun in nameing in class
 ```
 
 > your code should be read like sentences and peragraph
+
+## <a id="chapter-3"></a> 3 Writing better function
+
+#### function
+
+Functions should be small, focused, and do one thing well. They should have a clear purpose and a descriptive name. Avoid long parameter lists, and ensure functions adhere to the Single Responsibility Principle.
+
+❌ **Avoid**
+
+```
+    // Incorrect: Function with unclear purpose and long body
+    public void processUserData() {
+        // Long and convoluted code...
+    }
+
+```
+
+✅ **Instead**
+
+```
+    // Correct: Function with clear name and single responsibility
+    public void updateUserProfile(User user) {
+        // Code to update user profile...
+    }
+```
+
+#### Function Should Be Small
+
+❌ **Avoid**
+
+```
+
+// Incorrect: Function with complex branching and steps
+public void processPayment(Payment payment) {
+    if (payment.isCreditCard()) {
+        // Credit card processing...
+    } else if (payment.isPayPal()) {
+        // PayPal processing...
+    }
+    // More steps...
+}
+
+// Incorrect: Function doing too much work
+public void processCustomerOrder(CustomerOrder order) {
+    // Long and complicated process...
+}
+
+```
+
+✅ **Instead**
+
+```
+    // Correct: Separate functions for payment methods
+    public void processCreditCardPayment(CreditCardPayment payment) {
+        // Credit card processing...
+    }
+
+    public void processPayPalPayment(PayPalPayment payment) {
+        // PayPal processing...
+    }
+
+
+    // Correct: Break down into smaller functions
+    public void validateOrder(CustomerOrder order) {
+        // Validation logic...
+    }
+
+    public void calculateTotal(CustomerOrder order) {
+        // Calculation logic...
+    }
+```
+
+#### function size
+
+function body size should be not greater than 7-8
+
+❌ **Avoid**
+
+```
+    // Incorrect: Large function
+    public void processInvoice(Invoice invoice) {
+        // Many lines of code...
+    }
+
+    if you see name of the function it contains so much logic inside this function because of the naming convention
+
+```
+
+✅ **Instead**
+
+```
+    // Correct: Small and focused function
+    public void calculateTotal(Invoice invoice) {
+        // Calculation logic...
+    }
+```
+
+### One Level of Abstraction
+
+It is a concept in programming that suggests that a function should either deal with high-level logic or low-level details, but not both at the same time. This makes your code clearer and more organized.
+
+**High-Level Details:** These are like the big picture concepts. Imagine explaining a process to someone without getting into the nitty-gritty details.
+
+**Low-Level Details:** These are like the small, specific steps or actions that make up the process. It's like explaining the exact actions that need to be taken to accomplish a task.
+
+❌ **Avoid**
+
+```
+    public void generateReport(Customer customer, List<Order> orders) {
+    // High-level logic: Generating report headers, etc.
+
+        for (Order order : orders) {
+            // Low-level details: Generating order summary
+        }
+    }
+```
+
+✅ **Instead**
+
+```
+    public void generateCustomerReport(Customer customer) {
+        // High-level logic: Generating report headers, etc.
+        String customerReport = // ...
+
+        for (Order order : customer.getOrders()) {
+            customerReport += generateOrderSummary(order); // Using helper function
+        }
+    }
+
+    private String generateOrderSummary(Order order) {
+        // Low-level details: Generating order summary
+        // Return the order summary...
+    }
+
+```
+
+#### function name
+
+❌ **Avoid**
+
+```
+    // Incorrect: Poorly named function
+    public int c(int x, int y) {
+        return x + y;
+    }
+```
+
+✅ **Instead**
+
+```
+    // Correct: Meaningful function name
+    public int add(int num1, int num2) {
+        return num1 + num2;
+    }
+```
+
+#### function argument
+
+ideal number of argument should be 0
+
+niladic function - 0 argument
+monadic function - 1 argument
+
+so it is more readable if number of argument should be less
+
+❌ **Avoid**
+
+```
+    public class Calculator {
+
+        public int calculateTotal(int num1, int num2, int num3, int num4) {
+            return num1 + num2 + num3 + num4;
+        }
+
+        public static void main(String[] args) {
+            Calculator calculator = new Calculator();
+            int total = calculator.calculateTotal(10, 20, 30, 40);
+            System.out.println("Total: " + total);
+        }
+    }
+
+//this code should not be much readable
+
+```
+
+✅ **Instead**
+
+```
+    // Function should be small and focused
+    public int calculateTotal(int... numbers) {
+        // Function size: Small and focused
+        int total = 0;
+        for (int num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+```
+
+#### DRY (Don't repeat your self)
+
+❌ **Avoid**
+
+```
+    // Without DRY
+    EX-1
+    int area1 = length * width;
+    int area2 = length * width;
+
+
+    EX-2
+    if (temperature > 30) {
+        System.out.println("It's hot outside!");
+    }
+
+    if (temperature > 30) {
+        System.out.println("Stay hydrated!");
+    }
+```
+
+✅ **Instead**
+
+```
+    // With DRY
+
+    EX-1
+    int calculateArea(int length, int width) {
+        return length * width;
+    }
+
+    EX-2
+    int area1 = calculateArea(length, width);
+    int area2 = calculateArea(length, width);
+
+    void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    if (temperature > 30) {
+        printMessage("It's hot outside!");
+        printMessage("Stay hydrated!");
+    }
+
+```
