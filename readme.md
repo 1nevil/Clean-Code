@@ -3,6 +3,7 @@
 - [1. What is Clean code](#chapter-1)
 - [2. Meaningful name](#chapter-2)
 - [3. Writing better function](#chapter-3)
+- [4. Why code comment are bad](#chapter-4)
 
 ## <a id="chapter-1"></a> 1. What is Clean code
 
@@ -414,4 +415,122 @@ so it is more readable if number of argument should be less
         printMessage("Stay hydrated!");
     }
 
+```
+
+## <a id="chapter-4"></a> 4. Why code comment are bad
+
+### Types of valid comments.
+
+#### 1 .Legel comment - Mainly for related to copyright of the code
+
+```
+    /*
+        Copyright (C) 2017 The Android Open Source Project
+
+        Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+        Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+    */
+```
+
+#### 2. Informative comment - As the name suggest Its give the informtion of the code.
+
+```
+    //format matched MM/DD/YY
+    Pattern pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$")
+```
+
+#### 3. Explanation of Intent & Clarification - Write when the code is embiguous.
+
+```
+public class CommentExamples {
+
+    public static void main(String[] args) {
+        int x = 42;
+        int y = 7;
+
+        // Calculate the remainder of x divided by y
+        int remainder = x % y;
+
+        System.out.println("The remainder of " + x + " divided by " + y + " is " + remainder);
+
+        ShoppingCart cart = new ShoppingCart();
+        cart.addItem(19.99);
+        cart.addItem(29.95);
+
+        // Intent: Display the total amount in the shopping cart
+        System.out.println("Total amount in the shopping cart: $" + cart.getTotalAmount());
+    }
+}
+
+class ShoppingCart {
+    private double totalAmount;
+
+    // Intent: Add an item's price to the total amount
+    public void addItem(double itemPrice) {
+        totalAmount += itemPrice;
+    }
+
+    // Intent: Get the total amount in the shopping cart
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+}
+
+```
+
+#### 4. Warning of Consequences - Explaining that a test takes a long time to run
+
+```
+
+//In java
+@Test
+public void testPerformance() {
+    // Warning of Consequences: This test may take several minutes to complete due to extensive performance testing.
+    // Consider running it selectively, not in every build.
+    // Ensure your system is adequately resourced for accurate results.
+    // If it consistently fails due to timeouts, investigate and optimize.
+    // Disable in automated CI/CD pipelines if necessary.
+    // Long-running tests can affect build times and resource usage.
+    // Do not use this test for simple code changes; use it for performance profiling.
+
+    // Test logic...
+}
+
+//In javascript
+
+function fetchUserOrders(userId) {
+    // Warning of Consequences: This function performs a slow database query.
+    // It may cause a delay in response times.
+    // Use it sparingly and consider optimizing the database query.
+
+    // Database query logic...
+}
+```
+
+#### 5.TODO Comment
+
+```
+// TODO: Implement error handling here
+function processInput(input) {
+    // your code...
+}
+```
+
+#### 6.Documentation For Public APIs - Javadoc
+
+```
+/**
+ * Calculates the area of the rectangle.
+ *
+ * @param length The length of the rectangle.
+ * @param width The width of the rectangle.
+ * @return The area of the rectangle.
+ */
+public double calculateArea(double l  ength, double width) {
+    return length * width;
+}
+
+In this case, the Javadoc comment explains the purpose of the calculateArea method, its parameters (length and width), and its return value. It provides valuable information for developers who will use this method in their code.
 ```
